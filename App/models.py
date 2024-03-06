@@ -8,6 +8,14 @@ class UserPokemon(db.Model):
   pokemon_id = db.Column(db.Integer, db.ForeignKey('pokemon.id'))
   name = db.Column(db.String(50))
 
+  def get_json(self):
+    return {
+      'id': self.id,
+      'user_id': self.user_id,
+      'pokemon_id': self.pokemon_id,
+      'name': self.name
+    }
+
 class User(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   username = db.Column(db.String(50), unique=True, nullable=False)
@@ -41,4 +49,28 @@ class User(db.Model):
 
 class Pokemon(db.Model):
   id = db.Column(db.Integer, primary_key=True)
-  pass
+  name = db.Column(db.String(50))
+  attack = db.Column(db.Integer)
+  defense = db.Column(db.Integer)
+  hp = db.Column(db.Integer)
+  height = db.Column(db.Integer)
+  sp_attack = db.Column(db.Integer)
+  sp_defense = db.Column(db.Integer)
+  speed = db.Column(db.Integer)
+  type1 = db.Column(db.String(50))
+  type2 = db.Column(db.String(50))
+
+  def get_json(self):
+    return {
+      'id': self.id,
+      'name': self.name,
+      'attack': self.attack,
+      'defense': self.defense,
+      'hp': self.hp,
+      'height': self.height,
+      'sp_attack': self.sp_attack,
+      'sp_defense': self.sp_defense,
+      'speed': self.speed,
+      'type1': self.type1,
+      'type2': self.type2
+    }
